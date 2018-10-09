@@ -1,0 +1,49 @@
+<!--
+  Generated template for the ShoppingListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center>Shopping List</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<form #slListForm="ngForm" (ngSubmit)="onAddItem(slListForm)">
+		<ion-list>
+			<ion-item>
+				<ion-label floating>
+					Ingredient Name
+				</ion-label>
+				<ion-input type="text" name="ingredientName" ngModel required></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label floating>
+					Ingredient Amount
+				</ion-label>
+				<ion-input type="number" name="ingredientAmount" ngModel required> </ion-input>
+			</ion-item> 
+		</ion-list>
+		<button ion-button type="submit" block [disabled]="!slListForm.valid">Add Ingredient</button>
+	</form>
+
+	<ion-list>
+		<ion-item-sliding>
+			<ion-item *ngFor="let ingredient of listItems">
+			<h3>{{ingredient.name}} {{ingredient.amount}}</h3>
+		</ion-item>
+		<ion-item-options>
+			<button ion-button color="danger" (click)="onItemDelete(ingredient)">
+				<ion-icon name="trash"></ion-icon>
+				Delete
+			</button>
+		</ion-item-options>
+		</ion-item-sliding>
+	</ion-list>
+
+</ion-content>
